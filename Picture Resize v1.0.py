@@ -48,7 +48,7 @@ if name == str(10):
 if name == str(11):
     project_manager = "P:\Yacht Department\Picture Transfer file\Brad"
 if name == str(12):
-    project_manager = "P:\Yacht Department\Picture Transfer file\\xChad"
+    project_manager = "P:\Yacht Department\Picture Transfer file\\xChad C"
 
     
 
