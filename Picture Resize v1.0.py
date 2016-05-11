@@ -1,8 +1,7 @@
 # Duplicate picture and resize image saving it with a 'small' prefix to a separate folder named 'small'
 # Written by Chad C. 2016-05-08 v1.0
 from PIL import Image
-import os
-import subprocess
+import os, subprocess
 
 
 
@@ -19,7 +18,7 @@ print('''
 8:  Todd Sharp
 9:  Mike Baker
 10: James Donghia
-11: Brad
+11: Brad Melink
 12: Chad C.
 
 ''')
@@ -54,19 +53,19 @@ if name == str(12):
 
     
 
-new_folder = project_manager + '\\' + folder
+new_folder = project_manager + os.sep + folder
 
 def resize(project_manager):
     '''Create the destination folders for the original and resized small pictures'''
     try:
         os.mkdir(new_folder)
-        os.mkdir(new_folder + '\\' + 'small')
+        os.mkdir(new_folder + os.sep + 'small')
         # Scan through the root folder and look for pictures larger than 800 wide to resize
         for roots, dirs, files in os.walk(r"C:\Users\cczilli\Desktop\Pics to resize"):
             
 
             for file in files:
-                file_name = roots + '\\' + file
+                file_name = roots + os.sep + file
                 
                 if file.endswith('.png') or file.endswith('.jpg') or file.endswith('.JPG')\
                    or file.endswith('.jpeg') or file.endswith('.gif'):
@@ -79,20 +78,20 @@ def resize(project_manager):
                     ratio = 800 / width
                     # If picture larger than 800 wide. resize to 800 with appropriate height ratio
                     if width > 800:
-                        pic.save(new_folder + "\\" + file + ".jpg")
+                        pic.save(new_folder + os.sep + file + ".jpg")
                         print('Resizing', file_name, 'to', int(width * ratio), 'X', int(height * ratio))
                         smallpic = pic.resize((int(width * ratio), int(height * ratio)))
                         # Save resized photo to this location
-                        smallpic.save(new_folder + "\\" + "small" + "\\" + "small_" + file + ".jpg")
+                        smallpic.save(new_folder + os.sep + "small" + os.sep + "small_" + file + ".jpg")
                         os.remove(file_name)
                     # I picture smaller than 800 wide. Move and delete the photos to destination folder.
                     else:
                         print('Moving', file_name)
-                        pic.save(new_folder + "\\" + file + ".jpg")
+                        pic.save(new_folder + os.sep + file + ".jpg")
                         os.remove(file_name)
                         # Remove empty folder
                         try:
-                            os.rmdir(new_folder + '\\' + 'small')
+                            os.rmdir(new_folder + os.sep + 'small')
                         # If exception from folder with files continue
                         except:
                              continue
