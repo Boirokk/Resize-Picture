@@ -18,6 +18,7 @@ print('''
 9:  Mike Baker
 10: James Donghia
 11: Brad
+12: Chad C.
 
 ''')
 name = input()
@@ -46,13 +47,15 @@ if name == str(10):
     project_manager = "P:\Yacht Department\Picture Transfer file\\xJimmy"
 if name == str(11):
     project_manager = "P:\Yacht Department\Picture Transfer file\Brad"
+if name == str(12):
+    project_manager = "P:\Yacht Department\Picture Transfer file\\xChad"
 
     
 
 new_folder = project_manager + '\\' + folder
 
 def resize(project_manager):
-    
+    '''Create the destination folders for the original and resized small pictures'''
     try:
         os.mkdir(new_folder)
         os.mkdir(new_folder + '\\' + 'small')
@@ -72,7 +75,7 @@ def resize(project_manager):
                     width, height = pic.size
                     # Save ratio to make 800 pixels into a variable
                     ratio = 800 / width
-                    # If picture larger than 800 wide found resize to 800 with appropriate height ratio
+                    # If picture larger than 800 wide. resize to 800 with appropriate height ratio
                     if width > 800:
                         pic.save(new_folder + "\\" + file + ".jpg")
                         print('Resizing', file_name, 'to', int(width * ratio), 'X', int(height * ratio))
@@ -80,18 +83,18 @@ def resize(project_manager):
                         # Save resized photo to this location
                         smallpic.save(new_folder + "\\" + "small" + "\\" + "small_" + file + ".jpg")
                         os.remove(file_name)
+                    # I picture smaller than 800 wide. Move and delete the photos to destination folder.
                     else:
                         print('Moving', file_name)
                         pic.save(new_folder + "\\" + file + ".jpg")
                         os.remove(file_name)
+                        # Remove empty folder
                         try:
                             os.rmdir(new_folder + '\\' + 'small')
+                        # If exception from folder with files continue
                         except:
                              continue
 
-
-
-                        
                    
     except PermissionError as err:
         print(err)
@@ -100,14 +103,12 @@ def resize(project_manager):
     except FileNotFoundError as err:
         print(err)
 
-  
-            
     
-    
-        
+# main
 def main():
     resize(project_manager)
     input('Done... Press enter to exit')
-    
+
+# Call main
 main()
 
