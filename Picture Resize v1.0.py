@@ -2,6 +2,8 @@
 # Written by Chad C. 2016-05-08 v1.0
 from PIL import Image
 import os
+import subprocess
+
 
 
 print('Who are these pictures for?')
@@ -107,6 +109,8 @@ def resize(project_manager):
 # main
 def main():
     resize(project_manager)
+    file_open = ['explorer', new_folder]
+    subprocess.Popen(file_open)
     input('Done... Press enter to exit')
 
 # Call main
