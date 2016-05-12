@@ -3,7 +3,7 @@
 from PIL import Image
 import os, subprocess
 
-
+root_dir = os.getcwd()
 
 print('Who are these pictures for?')
 print('Enter the number of the corresponding person.')
@@ -61,8 +61,7 @@ def resize(project_manager):
         os.mkdir(new_folder)
         os.mkdir(new_folder + os.sep + 'small')
         # Scan through the root folder and look for pictures larger than 800 wide to resize
-        for roots, dirs, files in os.walk(r"C:\Users\cczilli\Desktop\Pics to resize"):
-            
+        for roots, dirs, files in os.walk(root_dir):
 
             for file in files:
                 file_name = roots + os.sep + file
