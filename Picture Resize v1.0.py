@@ -20,6 +20,7 @@ print('''
 10: James Donghia
 11: Brad Melink
 12: Chad C.
+13: Jeff Scott
 
 ''')
 name = input()
@@ -50,6 +51,8 @@ if name == str(11):
     project_manager = "P:\Yacht Department\Picture Transfer file\Brad"
 if name == str(12):
     project_manager = "P:\Yacht Department\Picture Transfer file\\xChad C"
+if name == str(13):
+    project_manager = "P:\Yacht Department\Picture Transfer file\\xJeff"  
 
     
 
