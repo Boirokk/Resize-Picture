@@ -2,6 +2,10 @@
 # Written by Chad C. 2016-05-08 v1.0
 from PIL import Image
 import os, subprocess
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.pagesizes import landscape
+from reportlab.pdfbase import pdfdoc
 
 root_dir = os.getcwd()
 
@@ -21,6 +25,7 @@ print('''
 11: Brad Melink
 12: Chad C.
 13: Jeff Scott
+14: Test
 
 ''')
 name = input()
@@ -52,7 +57,9 @@ if name == str(11):
 if name == str(12):
     project_manager = "P:\Yacht Department\Picture Transfer file\\xChad C"
 if name == str(13):
-    project_manager = "P:\Yacht Department\Picture Transfer file\\xJeff"  
+    project_manager = "P:\Yacht Department\Picture Transfer file\\xJeff"
+if name == str(14):
+    project_manager = r"D:\Users\Chad\Documents"
 
     
 
@@ -112,6 +119,27 @@ def main():
     resize(project_manager)
     file_open = ['explorer', new_folder]
     subprocess.Popen(file_open)
+
+    pdfdoc.PDFCatalog.OpenAction = '<</S/JavaScript/JS(this.print\({bUI:true,bSilent:false,bShrinkToFit:true}\);)>>'
+
+    
+    c = canvas.Canvas(new_folder + '\\new.pdf', pagesize=landscape(letter))
+
+    # Left images
+    c.drawImage(r"d:\Users\Chad\Pictures\Dodge Challenger\20160221_121110.jpg", 45, 60, width=340, height=215)
+    c.drawImage(r"d:\Users\Chad\Pictures\Dodge Challenger\20160305_152518.jpg", 45, 335, width=340, height=215)
+
+    # Right images
+    c.drawImage(r"d:\Users\Chad\Pictures\Dodge Challenger\20160221_150012.jpg", 410, 60, width=340, height=215)
+    c.drawImage(r"d:\Users\Chad\Pictures\Dodge Challenger\20160305_151707.jpg", 410, 335, width=340, height=215)
+
+    c.showPage()
+
+
+
+    c.save()
+
+    os.startfile(new_folder + '\\new.pdf')
     input('Done... Press enter to exit')
 
 # Call main
