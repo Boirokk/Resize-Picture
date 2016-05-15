@@ -119,23 +119,24 @@ def main():
     resize(project_manager)
     file_open = ['explorer', new_folder]
     subprocess.Popen(file_open)
-
+    pdf_image = []
+    count = 0
     pdfdoc.PDFCatalog.OpenAction = '<</S/JavaScript/JS(this.print\({bUI:true,bSilent:false,bShrinkToFit:true}\);)>>'
-
-    
     c = canvas.Canvas(new_folder + '\\new.pdf', pagesize=landscape(letter))
+    for file_name in os.listdir(new_folder):
+        if file_name.endswith('.jpg'):
+
+            pdf_image.append(new_folder + os.sep + file_name)
 
     # Left images
-    c.drawImage(r"d:\Users\Chad\Pictures\Dodge Challenger\20160221_121110.jpg", 45, 60, width=340, height=215)
-    c.drawImage(r"d:\Users\Chad\Pictures\Dodge Challenger\20160305_152518.jpg", 45, 335, width=340, height=215)
+    c.drawImage(pdf_image[0], 45, 60, width=340, height=215)
+    c.drawImage(pdf_image[1], 45, 335, width=340, height=215)
 
     # Right images
-    c.drawImage(r"d:\Users\Chad\Pictures\Dodge Challenger\20160221_150012.jpg", 410, 60, width=340, height=215)
-    c.drawImage(r"d:\Users\Chad\Pictures\Dodge Challenger\20160305_151707.jpg", 410, 335, width=340, height=215)
+    c.drawImage(pdf_image[2], 410, 60, width=340, height=215)
+    c.drawImage(pdf_image[3], 410, 335, width=340, height=215)
 
     c.showPage()
-
-
 
     c.save()
 
