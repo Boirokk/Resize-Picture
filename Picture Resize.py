@@ -92,7 +92,7 @@ def resize(project_manager):
                         # Save resized photo to this location
                         smallpic.save(new_folder + os.sep + "small" + os.sep + "small_" + file + ".jpg")
                         os.remove(file_name)
-                    # If picture smaller than 800 wide. Move and delete the photos to destination folder.
+                    # I picture smaller than 800 wide. Move and delete the photos to destination folder.
                     else:
                         print('Moving', file)
                         pic.save(new_folder + os.sep + file + ".jpg")
@@ -158,7 +158,7 @@ def main():
         else:
             for i in range(count // 9):
                 try:
-                    print(len(pdf_image))
+
                     # Left images
                     c.drawImage(pdf_image[0], 45, 50, width=235, height=160)
                     c.drawImage(pdf_image[1], 45, 225, width=235, height=160)
@@ -176,70 +176,17 @@ def main():
 
                     # Remove elements
                     try:
-                        print('deleting i0')
                         del pdf_image[0]
-                        print(len(pdf_image))
-
-                    except:
-                        continue
-                    try:
-                        print('deleting i1')
                         del pdf_image[1]
-                        print(len(pdf_image))
-
-                    except:
-                        continue
-                    try:
-                        print('deleting i2')
                         del pdf_image[2]
-                        print(len(pdf_image))
-
-                    except:
-                        continue
-                    try:
-                        print('deleting i3')
                         del pdf_image[3]
-                        print(len(pdf_image))
-
-                    except:
-                        continue
-                    try:
-                        print('deleting i4')
                         del pdf_image[4]
-                        print(len(pdf_image))
-
-                    except:
-                        continue
-                    try:
-                        print('deleting i5')
                         del pdf_image[5]
-                        print(len(pdf_image))
-
-                    except:
-                        continue
-                    try:
-                        print('deleting i6')
                         del pdf_image[6]
-                        print(len(pdf_image))
-
-                    except:
-                        continue
-                    try:
-                        print('deleting i7')
                         del pdf_image[7]
-                        print(len(pdf_image))
-
-                    except:
-                        continue
-                    try:
-                        print('deleting i8')
                         del pdf_image[8]
-                        print(len(pdf_image))
-
                     except:
                         continue
-
-
                 except:
                     break
 
