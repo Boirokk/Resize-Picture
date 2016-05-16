@@ -25,7 +25,7 @@ print('''
 11: Brad Melink
 12: Chad C.
 13: Jeff Scott
-14: Test
+
 
 ''')
 name = input()
@@ -58,8 +58,7 @@ if name == str(12):
     project_manager = "P:\Yacht Department\Picture Transfer file\\xChad C"
 if name == str(13):
     project_manager = "P:\Yacht Department\Picture Transfer file\\xJeff"
-if name == str(14):
-    project_manager = r"D:\Users\Chad\Documents"
+
 
     
 
@@ -121,8 +120,9 @@ def main():
     subprocess.Popen(file_open)
     pdf_image = []
     count = 0
+    pdfname = new_folder + '\\' + folder  +  '.pdf'
     pdfdoc.PDFCatalog.OpenAction = '<</S/JavaScript/JS(this.print\({bUI:true,bSilent:false,bShrinkToFit:true}\);)>>'
-    c = canvas.Canvas(new_folder + '\\new.pdf', pagesize=landscape(letter))
+    c = canvas.Canvas(pdfname, pagesize=landscape(letter))
     for file_name in os.listdir(new_folder):
         if file_name.endswith('.png') or file_name.endswith('.PNG') or file_name.endswith('.jpg')\
                 or file_name.endswith('.JPG') or file_name.endswith('.jpeg')\
@@ -237,7 +237,7 @@ def main():
 
         c.save()
 
-    os.startfile(new_folder + '\\new.pdf')
+    os.startfile(pdfname)
     input('Done... Press enter to exit')
 
 # Call main
