@@ -132,12 +132,26 @@ def main():
 
     if count <= 4:
         # Left images
-        c.drawImage(pdf_image[0], 45, 60, width=340, height=215)
-        c.drawImage(pdf_image[1], 45, 335, width=340, height=215)
-
+        try:
+            c.drawImage(pdf_image[0], 45, 60, width=340, height=215)
+        except:
+            pass
+        try:
+            c.drawImage(pdf_image[1], 45, 335, width=340, height=215)
+        except:
+            pass
         # Right images
-        c.drawImage(pdf_image[2], 410, 60, width=340, height=215)
-        c.drawImage(pdf_image[3], 410, 335, width=340, height=215)
+        try:
+            c.drawImage(pdf_image[2], 410, 60, width=340, height=215)
+        except:
+            pass
+        try:
+            c.drawImage(pdf_image[3], 410, 335, width=340, height=215)
+        except:
+            pass
+   
+        
+    
 
         c.showPage()
 
