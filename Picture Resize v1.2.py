@@ -94,7 +94,7 @@ def resize(project_manager):
                         os.remove(file_name)
                     # I picture smaller than 800 wide. Move and delete the photos to destination folder.
                     else:
-                        print('Moving', file_name)
+                        print('Moving', file)
                         pic.save(new_folder + os.sep + file + ".jpg")
                         os.remove(file_name)
                         # Remove empty folder
@@ -120,122 +120,234 @@ def main():
     subprocess.Popen(file_open)
     pdf_image = []
     count = 0
-    pdfname = new_folder + '\\' + folder  +  '.pdf'
+    pdfname = new_folder + '\\' + folder + '.pdf'
     pdfdoc.PDFCatalog.OpenAction = '<</S/JavaScript/JS(this.print\({bUI:true,bSilent:false,bShrinkToFit:true}\);)>>'
     c = canvas.Canvas(pdfname, pagesize=landscape(letter))
-    for file_name in os.listdir(new_folder):
-        if file_name.endswith('.png') or file_name.endswith('.PNG') or file_name.endswith('.jpg')\
-                or file_name.endswith('.JPG') or file_name.endswith('.jpeg')\
-                or file_name.endswith('.JPEG') or file_name.endswith('.gif')or file_name.endswith('.GIF'):
-            count += 1
-            pdf_image.append(new_folder + os.sep + file_name)
 
-    if count <= 4:
-        # Left images
-        try:
-            c.drawImage(pdf_image[0], 45, 60, width=340, height=215)
-        except:
-            pass
-        try:
-            c.drawImage(pdf_image[1], 45, 335, width=340, height=215)
-        except:
-            pass
-        # Right images
-        try:
-            c.drawImage(pdf_image[2], 410, 60, width=340, height=215)
-        except:
-            pass
-        try:
-            c.drawImage(pdf_image[3], 410, 335, width=340, height=215)
-        except:
-            pass
-   
-        
-    
+    try:
+        for file_name in os.listdir(new_folder + os.sep + 'small'):
+            if file_name.endswith('.png') or file_name.endswith('.PNG') or file_name.endswith('.jpg') \
+                    or file_name.endswith('.JPG') or file_name.endswith('.jpeg') \
+                    or file_name.endswith('.JPEG') or file_name.endswith('.gif') or file_name.endswith('.GIF'):
+                count += 1
+                pdf_image.append(new_folder + os.sep + 'small'+ os.sep + file_name)
 
-        c.showPage()
-
-        c.save()
-    else:
-        for i in range(count // 9):
+        if count <= 4:
+            # Left images
             try:
+                c.drawImage(pdf_image[0], 45, 60, width=340, height=215)
+            except:
+                pass
+            try:
+                c.drawImage(pdf_image[1], 45, 335, width=340, height=215)
+            except:
+                pass
+            # Right images
+            try:
+                c.drawImage(pdf_image[2], 410, 60, width=340, height=215)
+            except:
+                pass
+            try:
+                c.drawImage(pdf_image[3], 410, 335, width=340, height=215)
+            except:
+                pass
 
+            c.showPage()
+
+            c.save()
+        else:
+            for i in range(count // 9):
+                try:
+
+                    # Left images
+                    c.drawImage(pdf_image[0], 45, 50, width=235, height=160)
+                    c.drawImage(pdf_image[1], 45, 225, width=235, height=160)
+                    c.drawImage(pdf_image[2], 45, 400, width=235, height=160)
+
+                    # Middle images
+                    c.drawImage(pdf_image[3], 282, 50, width=235, height=160)
+                    c.drawImage(pdf_image[4], 282, 225, width=235, height=160)
+                    c.drawImage(pdf_image[5], 282, 400, width=235, height=160)
+
+                    # Right images
+                    c.drawImage(pdf_image[6], 519, 50, width=235, height=160)
+                    c.drawImage(pdf_image[7], 519, 225, width=235, height=160)
+                    c.drawImage(pdf_image[8], 519, 400, width=235, height=160)
+
+                    # Remove elements
+                    try:
+                        del pdf_image[0]
+                        del pdf_image[1]
+                        del pdf_image[2]
+                        del pdf_image[3]
+                        del pdf_image[4]
+                        del pdf_image[5]
+                        del pdf_image[6]
+                        del pdf_image[7]
+                        del pdf_image[8]
+                    except:
+                        continue
+                except:
+                    break
+
+                c.showPage()
+            try:
+                c.showPage()
+                # Print any left over pictures not divisible by 9
                 # Left images
                 c.drawImage(pdf_image[0], 45, 50, width=235, height=160)
-                c.drawImage(pdf_image[1], 45, 225, width=235, height=160)
-                c.drawImage(pdf_image[2], 45, 400, width=235, height=160)
-
-                # Middle images
-                c.drawImage(pdf_image[3], 282, 50, width=235, height=160)
-                c.drawImage(pdf_image[4], 282, 225, width=235, height=160)
-                c.drawImage(pdf_image[5], 282, 400, width=235, height=160)
-
-                # Right images
-                c.drawImage(pdf_image[6], 519, 50, width=235, height=160)
-                c.drawImage(pdf_image[7], 519, 225, width=235, height=160)
-                c.drawImage(pdf_image[8], 519, 400, width=235, height=160)
-
-                # Remove elements
-                try:
-                    del pdf_image[0]
-                    del pdf_image[1]
-                    del pdf_image[2]
-                    del pdf_image[3]
-                    del pdf_image[4]
-                    del pdf_image[5]
-                    del pdf_image[6]
-                    del pdf_image[7]
-                    del pdf_image[8]
-                except:
-                    continue
             except:
-                break
+                pass
+            try:
+                c.drawImage(pdf_image[1], 282, 50, width=235, height=160)
+            except:
+                pass
+            try:
+                c.drawImage(pdf_image[2], 519, 50, width=235, height=160)
+            except:
+                pass
+            try:
+                c.drawImage(pdf_image[3], 45, 225, width=235, height=160)
+            except:
+                pass
+            try:
+                c.drawImage(pdf_image[4], 282, 225, width=235, height=160)
+            except:
+                pass
+            try:
+                c.drawImage(pdf_image[5], 519, 225, width=235, height=160)
+            except:
+                pass
+            try:
+                c.drawImage(pdf_image[6], 45, 400, width=235, height=160)
+            except:
+                pass
+            try:
+                c.drawImage(pdf_image[7], 282, 400, width=235, height=160)
+            except:
+                pass
+            try:
+                c.drawImage(pdf_image[8], 519, 400, width=235, height=160)
+            except:
+                pass
 
-            c.showPage()
-        try:
-            c.showPage()
-            # Print any left over pictures not divisible by 9
+            c.save()
+
+    except:
+        for file_name in os.listdir(new_folder):
+            print(file_name)
+            if file_name.endswith('.png') or file_name.endswith('.PNG') or file_name.endswith('.jpg')\
+                    or file_name.endswith('.JPG') or file_name.endswith('.jpeg')\
+                    or file_name.endswith('.JPEG') or file_name.endswith('.gif')or file_name.endswith('.GIF'):
+                count += 1
+                pdf_image.append(new_folder + os.sep + file_name)
+
+        if count <= 4:
             # Left images
-            c.drawImage(pdf_image[0], 45, 50, width=235, height=160)
-        except:
-            pass
-        try:
-            c.drawImage(pdf_image[1], 282, 50, width=235, height=160)
-        except:
-            pass
-        try:
-            c.drawImage(pdf_image[2], 519, 50, width=235, height=160)
-        except:
-            pass
-        try:
-            c.drawImage(pdf_image[3], 45, 225, width=235, height=160)
-        except:
-            pass
-        try:
-            c.drawImage(pdf_image[4], 282, 225, width=235, height=160)
-        except:
-            pass
-        try:
-            c.drawImage(pdf_image[5], 519, 225, width=235, height=160)
-        except:
-            pass
-        try:
-            c.drawImage(pdf_image[6], 45, 400, width=235, height=160)
-        except:
-            pass
-        try:
-            c.drawImage(pdf_image[7], 282, 400, width=235, height=160)
-        except:
-            pass
-        try:
-            c.drawImage(pdf_image[8], 519, 400, width=235, height=160)
-        except:
-            pass
+            try:
+                c.drawImage(pdf_image[0], 45, 60, width=340, height=215)
+            except:
+                pass
+            try:
+                c.drawImage(pdf_image[1], 45, 335, width=340, height=215)
+            except:
+                pass
+            # Right images
+            try:
+                c.drawImage(pdf_image[2], 410, 60, width=340, height=215)
+            except:
+                pass
+            try:
+                c.drawImage(pdf_image[3], 410, 335, width=340, height=215)
+            except:
+                pass
 
 
 
 
-        c.save()
+            c.showPage()
+
+            c.save()
+        else:
+            for i in range(count // 9):
+                try:
+
+                    # Left images
+                    c.drawImage(pdf_image[0], 45, 50, width=235, height=160)
+                    c.drawImage(pdf_image[1], 45, 225, width=235, height=160)
+                    c.drawImage(pdf_image[2], 45, 400, width=235, height=160)
+
+                    # Middle images
+                    c.drawImage(pdf_image[3], 282, 50, width=235, height=160)
+                    c.drawImage(pdf_image[4], 282, 225, width=235, height=160)
+                    c.drawImage(pdf_image[5], 282, 400, width=235, height=160)
+
+                    # Right images
+                    c.drawImage(pdf_image[6], 519, 50, width=235, height=160)
+                    c.drawImage(pdf_image[7], 519, 225, width=235, height=160)
+                    c.drawImage(pdf_image[8], 519, 400, width=235, height=160)
+
+                    # Remove elements
+                    try:
+                        del pdf_image[0]
+                        del pdf_image[1]
+                        del pdf_image[2]
+                        del pdf_image[3]
+                        del pdf_image[4]
+                        del pdf_image[5]
+                        del pdf_image[6]
+                        del pdf_image[7]
+                        del pdf_image[8]
+                    except:
+                        continue
+                except:
+                    break
+
+                c.showPage()
+            try:
+                c.showPage()
+                # Print any left over pictures not divisible by 9
+                # Left images
+                c.drawImage(pdf_image[0], 45, 50, width=235, height=160)
+            except:
+                pass
+            try:
+                c.drawImage(pdf_image[1], 282, 50, width=235, height=160)
+            except:
+                pass
+            try:
+                c.drawImage(pdf_image[2], 519, 50, width=235, height=160)
+            except:
+                pass
+            try:
+                c.drawImage(pdf_image[3], 45, 225, width=235, height=160)
+            except:
+                pass
+            try:
+                c.drawImage(pdf_image[4], 282, 225, width=235, height=160)
+            except:
+                pass
+            try:
+                c.drawImage(pdf_image[5], 519, 225, width=235, height=160)
+            except:
+                pass
+            try:
+                c.drawImage(pdf_image[6], 45, 400, width=235, height=160)
+            except:
+                pass
+            try:
+                c.drawImage(pdf_image[7], 282, 400, width=235, height=160)
+            except:
+                pass
+            try:
+                c.drawImage(pdf_image[8], 519, 400, width=235, height=160)
+            except:
+                pass
+
+
+
+
+            c.save()
 
     os.startfile(pdfname)
     input('Done... Press enter to exit')
