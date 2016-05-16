@@ -76,8 +76,8 @@ def resize(project_manager):
             for file in files:
                 file_name = roots + os.sep + file
                 
-                if file.endswith('.png') or file.endswith('.jpg') or file.endswith('.JPG')\
-                   or file.endswith('.jpeg') or file.endswith('.gif'):
+                if file.endswith('.png') or file.endswith('.PNG') or file.endswith('.jpg') or file.endswith('.JPG')\
+                   or file.endswith('.jpeg') or file.endswith('.JPEG') or file.endswith('.gif') or file.endswith('.GIF'):
                     
                     # Open the image and save picture object
                     pic = Image.open(file_name)
@@ -88,7 +88,7 @@ def resize(project_manager):
                     # If picture larger than 800 wide. resize to 800 with appropriate height ratio
                     if width > 800:
                         pic.save(new_folder + os.sep + file + ".jpg")
-                        print('Resizing', file_name, 'to', int(width * ratio), 'X', int(height * ratio))
+                        print('Resizing', file, 'to', int(width * ratio), 'X', int(height * ratio))
                         smallpic = pic.resize((int(width * ratio), int(height * ratio)))
                         # Save resized photo to this location
                         smallpic.save(new_folder + os.sep + "small" + os.sep + "small_" + file + ".jpg")
@@ -124,21 +124,104 @@ def main():
     pdfdoc.PDFCatalog.OpenAction = '<</S/JavaScript/JS(this.print\({bUI:true,bSilent:false,bShrinkToFit:true}\);)>>'
     c = canvas.Canvas(new_folder + '\\new.pdf', pagesize=landscape(letter))
     for file_name in os.listdir(new_folder):
-        if file_name.endswith('.jpg'):
-
+        if file_name.endswith('.png') or file_name.endswith('.PNG') or file_name.endswith('.jpg')\
+                or file_name.endswith('.JPG') or file_name.endswith('.jpeg')\
+                or file_name.endswith('.JPEG') or file_name.endswith('.gif')or file_name.endswith('.GIF'):
+            count += 1
             pdf_image.append(new_folder + os.sep + file_name)
 
-    # Left images
-    c.drawImage(pdf_image[0], 45, 60, width=340, height=215)
-    c.drawImage(pdf_image[1], 45, 335, width=340, height=215)
+    if count <= 4:
+        # Left images
+        c.drawImage(pdf_image[0], 45, 60, width=340, height=215)
+        c.drawImage(pdf_image[1], 45, 335, width=340, height=215)
 
-    # Right images
-    c.drawImage(pdf_image[2], 410, 60, width=340, height=215)
-    c.drawImage(pdf_image[3], 410, 335, width=340, height=215)
+        # Right images
+        c.drawImage(pdf_image[2], 410, 60, width=340, height=215)
+        c.drawImage(pdf_image[3], 410, 335, width=340, height=215)
 
-    c.showPage()
+        c.showPage()
 
-    c.save()
+        c.save()
+    else:
+        for i in range(count // 9):
+            try:
+
+                # Left images
+                c.drawImage(pdf_image[0], 45, 50, width=235, height=160)
+                c.drawImage(pdf_image[1], 45, 225, width=235, height=160)
+                c.drawImage(pdf_image[2], 45, 400, width=235, height=160)
+
+                # Middle images
+                c.drawImage(pdf_image[3], 282, 50, width=235, height=160)
+                c.drawImage(pdf_image[4], 282, 225, width=235, height=160)
+                c.drawImage(pdf_image[5], 282, 400, width=235, height=160)
+
+                # Right images
+                c.drawImage(pdf_image[6], 519, 50, width=235, height=160)
+                c.drawImage(pdf_image[7], 519, 225, width=235, height=160)
+                c.drawImage(pdf_image[8], 519, 400, width=235, height=160)
+
+                # Remove elements
+                try:
+                    del pdf_image[0]
+                    del pdf_image[1]
+                    del pdf_image[2]
+                    del pdf_image[3]
+                    del pdf_image[4]
+                    del pdf_image[5]
+                    del pdf_image[6]
+                    del pdf_image[7]
+                    del pdf_image[8]
+                except:
+                    continue
+            except:
+                break
+
+            c.showPage()
+        try:
+            c.showPage()
+            # Print any left over pictures not divisible by 9
+            # Left images
+            c.drawImage(pdf_image[0], 45, 50, width=235, height=160)
+        except:
+            pass
+        try:
+            c.drawImage(pdf_image[1], 282, 50, width=235, height=160)
+        except:
+            pass
+        try:
+            c.drawImage(pdf_image[2], 519, 50, width=235, height=160)
+        except:
+            pass
+        try:
+            c.drawImage(pdf_image[3], 45, 225, width=235, height=160)
+        except:
+            pass
+        try:
+            c.drawImage(pdf_image[4], 282, 225, width=235, height=160)
+        except:
+            pass
+        try:
+            c.drawImage(pdf_image[5], 519, 225, width=235, height=160)
+        except:
+            pass
+        try:
+            c.drawImage(pdf_image[6], 45, 400, width=235, height=160)
+        except:
+            pass
+        try:
+            c.drawImage(pdf_image[7], 282, 400, width=235, height=160)
+        except:
+            pass
+        try:
+            c.drawImage(pdf_image[8], 519, 400, width=235, height=160)
+        except:
+            pass
+
+
+
+
+        c.save()
 
     os.startfile(new_folder + '\\new.pdf')
     input('Done... Press enter to exit')
