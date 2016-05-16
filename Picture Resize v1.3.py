@@ -1,5 +1,5 @@
 # Duplicate picture and resize image saving it with a 'small' prefix to a separate folder named 'small'
-# Written by Chad C. 2016-05-08 v1.0
+# Written by Chad C. 2016-05-08 v1.3
 from PIL import Image
 import os, subprocess
 from reportlab.pdfgen import canvas
@@ -192,7 +192,8 @@ def main():
 
                 c.showPage()
             try:
-                c.showPage()
+                if count > 9:
+                    c.showPage()
                 # Print any left over pictures not divisible by 9
                 # Left images
                 c.drawImage(pdf_image[0], 45, 50, width=235, height=160)
@@ -298,6 +299,7 @@ def main():
                         del pdf_image[6]
                         del pdf_image[7]
                         del pdf_image[8]
+
                     except:
                         continue
                 except:
@@ -305,7 +307,8 @@ def main():
 
                 c.showPage()
             try:
-                c.showPage()
+                if count > 9:
+                    c.showPage()
                 # Print any left over pictures not divisible by 9
                 # Left images
                 c.drawImage(pdf_image[0], 45, 50, width=235, height=160)
@@ -350,6 +353,7 @@ def main():
             c.save()
 
     os.startfile(pdfname)
+    print(len(pdf_image))
     input('Done... Press enter to exit')
 
 # Call main
