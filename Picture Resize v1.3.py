@@ -58,6 +58,8 @@ if name == str(12):
     project_manager = "P:\Yacht Department\Picture Transfer file\\xChad C"
 if name == str(13):
     project_manager = "P:\Yacht Department\Picture Transfer file\\xJeff"
+if name == str('t'):
+    project_manager = r"C:\Users\Chad\Desktop\test"
 
 
     
@@ -133,32 +135,31 @@ def main():
                 pdf_image.append(new_folder + os.sep + 'small'+ os.sep + file_name)
 
         if count <= 4:
-            # Left images
-            try:
+
+            if count == 1:
                 c.drawImage(pdf_image[0], 45, 60, width=340, height=215)
-            except:
-                pass
-            try:
+            if count == 2:
+                c.drawImage(pdf_image[0], 45, 60, width=340, height=215)
                 c.drawImage(pdf_image[1], 45, 335, width=340, height=215)
-            except:
-                pass
-            # Right images
-            try:
+            if count == 3:
+                c.drawImage(pdf_image[0], 45, 60, width=340, height=215)
+                c.drawImage(pdf_image[1], 45, 335, width=340, height=215)
                 c.drawImage(pdf_image[2], 410, 60, width=340, height=215)
-            except:
-                pass
-            try:
+            if count == 4:
+                c.drawImage(pdf_image[0], 45, 60, width=340, height=215)
+                c.drawImage(pdf_image[1], 45, 335, width=340, height=215)
+                c.drawImage(pdf_image[2], 410, 60, width=340, height=215)
                 c.drawImage(pdf_image[3], 410, 335, width=340, height=215)
-            except:
-                pass
 
             c.showPage()
 
             c.save()
         else:
+            leftover = count % 9
             for i in range(count // 9):
+
                 try:
-                    print(len(pdf_image))
+
                     # Left images
                     c.drawImage(pdf_image[0], 45, 50, width=235, height=160)
                     c.drawImage(pdf_image[1], 45, 225, width=235, height=160)
@@ -176,112 +177,48 @@ def main():
 
                     # Remove elements
                     try:
-                        print('deleting i0')
                         del pdf_image[0]
-                        print(len(pdf_image))
-
-                    except:
-                        continue
-                    try:
-                        print('deleting i1')
                         del pdf_image[1]
-                        print(len(pdf_image))
-
-                    except:
-                        continue
-                    try:
-                        print('deleting i2')
                         del pdf_image[2]
-                        print(len(pdf_image))
-
-                    except:
-                        continue
-                    try:
-                        print('deleting i3')
                         del pdf_image[3]
-                        print(len(pdf_image))
-
-                    except:
-                        continue
-                    try:
-                        print('deleting i4')
                         del pdf_image[4]
-                        print(len(pdf_image))
-
-                    except:
-                        continue
-                    try:
-                        print('deleting i5')
                         del pdf_image[5]
-                        print(len(pdf_image))
-
-                    except:
-                        continue
-                    try:
-                        print('deleting i6')
                         del pdf_image[6]
-                        print(len(pdf_image))
-
-                    except:
-                        continue
-                    try:
-                        print('deleting i7')
                         del pdf_image[7]
-                        print(len(pdf_image))
-
-                    except:
-                        continue
-                    try:
-                        print('deleting i8')
                         del pdf_image[8]
-                        print(len(pdf_image))
 
                     except:
                         continue
-
 
                 except:
                     break
 
                 c.showPage()
             try:
-                if count > 9:
-                    c.showPage()
+                # if count > 9:
+                #     c.showPage()
                 # Print any left over pictures not divisible by 9
                 # Left images
-                c.drawImage(pdf_image[0], 45, 50, width=235, height=160)
-            except:
-                pass
-            try:
-                c.drawImage(pdf_image[1], 282, 50, width=235, height=160)
-            except:
-                pass
-            try:
-                c.drawImage(pdf_image[2], 519, 50, width=235, height=160)
-            except:
-                pass
-            try:
-                c.drawImage(pdf_image[3], 45, 225, width=235, height=160)
-            except:
-                pass
-            try:
-                c.drawImage(pdf_image[4], 282, 225, width=235, height=160)
-            except:
-                pass
-            try:
-                c.drawImage(pdf_image[5], 519, 225, width=235, height=160)
-            except:
-                pass
-            try:
-                c.drawImage(pdf_image[6], 45, 400, width=235, height=160)
-            except:
-                pass
-            try:
-                c.drawImage(pdf_image[7], 282, 400, width=235, height=160)
-            except:
-                pass
-            try:
-                c.drawImage(pdf_image[8], 519, 400, width=235, height=160)
+
+                if leftover == 8: # need one for each remainder
+                    c.drawImage(pdf_image[0], 45, 50, width=235, height=160)
+                    c.drawImage(pdf_image[1], 282, 50, width=235, height=160)
+                    c.drawImage(pdf_image[2], 519, 50, width=235, height=160)
+                    c.drawImage(pdf_image[3], 45, 225, width=235, height=160)
+                    c.drawImage(pdf_image[4], 282, 225, width=235, height=160)
+                    c.drawImage(pdf_image[5], 519, 225, width=235, height=160)
+                    c.drawImage(pdf_image[6], 45, 400, width=235, height=160)
+                    c.drawImage(pdf_image[7], 282, 400, width=235, height=160)
+                if leftover == 7:  # need one for each remainder
+                    c.drawImage(pdf_image[0], 45, 50, width=235, height=160)
+                    c.drawImage(pdf_image[1], 282, 50, width=235, height=160)
+                    c.drawImage(pdf_image[2], 519, 50, width=235, height=160)
+                    c.drawImage(pdf_image[3], 45, 225, width=235, height=160)
+                    c.drawImage(pdf_image[4], 282, 225, width=235, height=160)
+                    c.drawImage(pdf_image[5], 519, 225, width=235, height=160)
+                    c.drawImage(pdf_image[6], 45, 400, width=235, height=160)
+
+
             except:
                 pass
 
@@ -399,8 +336,6 @@ def main():
                 c.drawImage(pdf_image[8], 519, 400, width=235, height=160)
             except:
                 pass
-
-
 
 
             c.save()
