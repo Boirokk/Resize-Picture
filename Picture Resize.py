@@ -230,7 +230,7 @@ def main():
 
     except:
         for file_name in os.listdir(new_folder):
-            print(file_name)
+            #print(file_name)
             if file_name.endswith('.png') or file_name.endswith('.PNG') or file_name.endswith('.jpg')\
                     or file_name.endswith('.JPG') or file_name.endswith('.jpeg')\
                     or file_name.endswith('.JPEG') or file_name.endswith('.gif')or file_name.endswith('.GIF'):
@@ -294,10 +294,10 @@ def main():
 
                 c.showPage()
             try:
-                if count > 9:
-                    c.showPage()
-                # Print any left over pictures not divisible by 9
-                # Left images
+                # if count > 9:
+                #     c.showPage()
+                # # Print any left over pictures not divisible by 9
+                # # Left images
                 c.drawImage(pdf_image[0], 45, 50, width=235, height=160)
             except:
                 pass
@@ -340,7 +340,7 @@ def main():
             c.save()
 
     os.startfile(pdfname)
-    print(len(pdf_image))
+    #print(len(pdf_image))
     input('Done... Press enter to exit')
 
 # Call main
