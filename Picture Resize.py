@@ -176,15 +176,9 @@ def main():
 
                     # Remove elements
                     try:
-                        del pdf_image[0]
-                        del pdf_image[1]
-                        del pdf_image[2]
-                        del pdf_image[3]
-                        del pdf_image[4]
-                        del pdf_image[5]
-                        del pdf_image[6]
-                        del pdf_image[7]
-                        del pdf_image[8]
+                        for i in range(9):
+                            del pdf_image[0]
+
                     except:
                         continue
                 except:
@@ -192,8 +186,8 @@ def main():
 
                 c.showPage()
             try:
-                if count > 9:
-                    c.showPage()
+                # if count > 9:
+                #     c.showPage()
                 # Print any left over pictures not divisible by 9
                 # Left images
                 c.drawImage(pdf_image[0], 45, 50, width=235, height=160)
@@ -290,15 +284,8 @@ def main():
 
                     # Remove elements
                     try:
-                        del pdf_image[0]
-                        del pdf_image[1]
-                        del pdf_image[2]
-                        del pdf_image[3]
-                        del pdf_image[4]
-                        del pdf_image[5]
-                        del pdf_image[6]
-                        del pdf_image[7]
-                        del pdf_image[8]
+                        for i in range(9):
+                            del pdf_image[0]
 
                     except:
                         continue
@@ -358,4 +345,3 @@ def main():
 
 # Call main
 main()
-
